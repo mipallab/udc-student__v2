@@ -1,0 +1,29 @@
+/*==========================
+		width for 1362
+============================*/
+@media screen and (max-width: 1362px) {
+	.regtable {
+
+		width: 75%;
+	}
+}
+
+/*==========================
+		width for 768
+============================*/
+@media screen and (max-width: 768px) {
+	
+	.regtable {
+		width: 100%;
+	}
+}
+
+/*==========================
+		width for 400
+============================*/
+@media screen and (max-width: 400px) {
+	
+	.fromtable {
+		width: 280px;
+	}
+}
