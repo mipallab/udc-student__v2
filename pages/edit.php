@@ -1,5 +1,21 @@
 <?php include_once('matha.php');?>
 
+
+
+	<!-- search field -->
+	<div class="container">
+		<div class="card shadow w-25 my-4">
+			<div class="card-body">
+				<form action="">
+					<label for="stu-search" class="form-label">Name : </label>
+					<input id="stu-search" class="form-control" type="text" placeholder="Search by name">
+					<button class="btn btn-sm btn-info mt-2" type="submit">search</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- show profile field-->
  	<div class="container">
 		<div class="card my-5 shadow">
 			<div class="card-header">
@@ -59,27 +75,31 @@
 											<legend class="w-auto float-none fs-6"></legend>
 											<div class="form-check form-check-inline">
 												<input class="form-check-input" type="checkbox" id="song" value="song" name="interested_sub">
-												<label class="form-check-label" for="song">song</label>
+												<label class="form-check-label" for="song">Song</label>
 										  	</div>
 										  	<div class="form-check form-check-inline">
 												<input class="form-check-input" type="checkbox" id="dance" value="dance" name="interested_sub">
-												<label class="form-check-label" for="dance">dance</label>
+												<label class="form-check-label" for="dance">Dance</label>
 										  	</div>
 											<div class="form-check form-check-inline">
 												<input class="form-check-input" type="checkbox" id="recitation" value="recitation" name="interested_sub">
 												<label class="form-check-label" for="recitation">Recitation(আবৃত্তি)</label>
 										  	</div>
 										  	<div class="form-check form-check-inline">
+												<input class="form-check-input" type="checkbox" id="dance" value="dance" name="interested_sub[]">
+												<label class="form-check-label pe-auto" for="dance">Dance</label>
+										  	</div>
+										  	<div class="form-check form-check-inline">
 												<input class="form-check-input" type="checkbox" id="acting" value="acting" name="interested_sub">
-												<label class="form-check-label" for="acting">acting</label>
+												<label class="form-check-label" for="acting">Acting</label>
 										  	</div>
 											<div class="form-check form-check-inline">
 												<input class="form-check-input" type="checkbox" id="tobol" value="tobol" name="interested_sub">
-												<label class="form-check-label" for="tobol">tobol</label>
+												<label class="form-check-label" for="tobol">Tobol</label>
 										  	</div>
 										  	<div class="form-check form-check-inline">
 												<input class="form-check-input" type="checkbox" id="ganeral-member" value="ganeral-member" name="interested_sub">
-												<label class="form-check-label" for="ganeral-member"> ganeral member (সাধারণ সদস্য)</label>
+												<label class="form-check-label" for="ganeral-member"> Ganeral Member (সাধারণ সদস্য)</label>
 										  	</div>
 										</fieldset>
 									</td>

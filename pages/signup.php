@@ -7,7 +7,9 @@ include_once('../autoload.php');
 
 		$error = array();
 		//POST data
-			$fullName 				= $_POST['full_name'] ;
+			
+			$fullName 				= $_POST['full_name'];
+			$fullName_bn 			= $_POST['full_name_bn'];
 		    $fatherName 			= $_POST['fathers_name'];
 		    $motherName 			= $_POST['mothers_name'];
 		    $address 				= $_POST['address'] ;
@@ -20,6 +22,29 @@ include_once('../autoload.php');
 		    $username 				= $_POST['username'] ;
 		    $new_password			= $_POST['new-password'] ;
 		    $confarm_password		= $_POST['confarm-password'] ;
+
+		
+		// username exists valid
+		    $sqlusernameselect = "SELECT username FROM students WHERE username = '$username'";
+		    $run_username_query = mysqli_query($connect, $sqlusernameselect) or die('select query not run');
+		    $result_username = mysqli_fetch_assoc($run_username_query);
+		    $check_username = $result_username['username'] ?? " ";
+		    if($username === $check_username) {
+		    	$error['username'] = '"'. $username .'" username already exists! Please try another username';
+		    }
+
+
+		// email exists valid
+		    $sqlemailselect = "SELECT email FROM students WHERE email = '$email'";
+		    $run_email_query = mysqli_query($connect, $sqlemailselect) or die('select query not run');
+		    $result_email = mysqli_fetch_assoc($run_email_query);
+		    $check_email = $result_email['email'] ?? ' ';
+		    if($email === $check_email) {
+		    	$error['email'] = '"'. $email .'" email already exists! Please try another email';
+		    }else {
+		    	$email = $_POST['email'] ;
+		    }
+
 
 		//confarm password match
 		    if($new_password != $confarm_password) {
@@ -67,8 +92,12 @@ include_once('../autoload.php');
 				move_uploaded_file($photo_tmp, $target_dir.$photo_name);
 
 			//send query
-				$sql = "INSERT INTO students(full_name, father_name, mother_name, present_address, date_of_birth, age, occupation, phone, interested_subject, gender, email, username, password, photo) VALUES ('$fullName', '$fatherName', '$motherName', '$address', '$dob', '$old', '$occopation', '$phone', '$interested_sub', '$gender', '$email', '$username', '$new_password', '$photo_name')";
+				$sql = "INSERT INTO students(full_name, full_name_bn, father_name, mother_name, present_address, date_of_birth, age, occupation, phone, interested_subject, gender, email, username, password, photo) VALUES ('$fullName', '$fullName_bn', '$fatherName', '$motherName', '$address', '$dob', '$old', '$occopation', '$phone', '$interested_sub', '$gender', '$email', '$username', '$new_password', '$photo_name')";
 				mysqli_query($connect, $sql) or die('query not send');
+
+			//redirect page
+				$_POST[] = array(" ");
+				header('location:./table.php');
 
 		}
 
@@ -87,12 +116,21 @@ include_once('../autoload.php');
 				</div>
 				<div class="card-body">
 					<form action="#" method="POST" enctype="multipart/form-data">
+
 						<!-- full name field -->
-						<div class="fullNameField mb-3">
-							<label class="form-label" for="fullname mt-2">Full Name</label> <br>
+						<div class="fullNameBnField mb-3">
+							<label class="form-label" for="fullname mt-2">Full Name</label>
 							<input class="px-2 form-control" id="fullname" type="text" required name="full_name" value="<?php echo (isset($fullName)) ? ($fullName) : ("");?>">
 							<span class="form-text">Must match NID or DOB card</span>
 						</div>
+
+						<!-- full bangla name field -->
+						<div class="fullNameBnField mb-3">
+							<label class="form-label" for="fullbnname mt-2">Full Name (বাংলা)</label> <br>
+							<input class="px-2 form-control" id="fullbnname" type="text" required name="full_name_bn" value="<?php echo (isset($fullName_bn)) ? ($fullName_bn) : ("");?>" placeholder="বাংলা">
+							<span class="form-text"></span>
+						</div>
+
 
 						<!-- father name field -->
 						<div class="fatherNameField mb-3">
@@ -141,28 +179,32 @@ include_once('../autoload.php');
 							<fieldset class="border p-2">
 								<legend class="w-auto float-none p-2 fs-6">The interested subject</legend>
 								<div class="form-check form-check-inline">
-									<input class="form-check-input"  type="checkbox" id="song" value="song" name="interested_sub[]" required>
-									<label class="form-check-label pe-auto" for="song">song</label>
+									<input class="form-check-input"  type="checkbox" id="song" value="song" name="interested_sub[]">
+									<label class="form-check-label pe-auto" for="song">Song</label>
 							  	</div>
 							  	<div class="form-check form-check-inline">
 									<input class="form-check-input" type="checkbox" id="dance" value="dance" name="interested_sub[]">
-									<label class="form-check-label pe-auto" for="dance">dance</label>
+									<label class="form-check-label pe-auto" for="dance">Dance</label>
 							  	</div>
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="checkbox" id="recitation" value="recitation" name="interested_sub[]">
 									<label class="form-check-label pe-auto" for="recitation">Recitation(আবৃত্তি)</label>
 							  	</div>
 							  	<div class="form-check form-check-inline">
-									<input class="form-check-input" type="checkbox" id="acting" value="acting" name="interested_sub[]">
-									<label class="form-check-label pe-auto" for="acting">acting</label>
+									<input class="form-check-input" type="checkbox" id="drowing" value="drowing" name="interested_sub[]">
+									<label class="form-check-label pe-auto" for="drowing">Drowing</label>
+							  	</div>
+							  	<div class="form-check form-check-inline">
+									<input class="form-check-input" type="checkbox" id="acting" value="Acting" name="interested_sub[]">
+									<label class="form-check-label pe-auto" for="acting">Acting</label>
 							  	</div>
 								<div class="form-check form-check-inline">
 									<input class="form-check-input" type="checkbox" id="tobol" value="tobol" name="interested_sub[]">
-									<label class="form-check-label pe-auto" for="tobol">tobol</label>
+									<label class="form-check-label pe-auto" for="tobol">Tobol</label>
 							  	</div>
 							  	<div class="form-check form-check-inline">
 									<input class="form-check-input" type="checkbox" id="ganeral-member" value="ganeral-member" name="interested_sub[]">
-									<label class="form-check-label pe-auto" for="ganeral-member"> ganeral member (সাধারণ সদস্য)</label>
+									<label class="form-check-label pe-auto" for="ganeral-member"> Ganeral Member (সাধারণ সদস্য)</label>
 							  	</div>
 							</fieldset>
 							<hr>
@@ -187,12 +229,26 @@ include_once('../autoload.php');
 						<div class="emailField mb-3">
 							<label class="form-label" for="email mt-2">Email</label><br>
 							<input class="px-2 form-control" id="email" type="email" name="email" required value="<?php echo (isset($email)) ? ($email) : ("");?>">
+							<div class="text-danger">
+								<?php
+									if(isset($error['email'])) {
+										echo $error['email'];
+									}
+								?>
+							</div>	
 						</div>
 
 						<!-- username -->
 						<div class="userField mb-3">
 							<label class="form-label" for="username mt-2">Username</label><br>
 							<input class="px-2 form-control" id="username" type="text" name="username" required value="<?php echo (isset($username)) ? ($username) : ("");?>">
+							<div class="text-danger">
+								<?php 
+									if(isset($error['username'])) {
+										echo $error['username'];
+									}
+								?>
+							</div>
 						</div>
 
 						<!-- new password -->
@@ -221,7 +277,7 @@ include_once('../autoload.php');
 							    	<label for="imgfile" class="col-form-label">Upload your Photo</label>
 							  	</div>
 							  	<div class="col-auto">
-							    	<input type="file" id="imgfile" class=" image fileimg form-control" aria-describedby="fileHelpInline" name="up_photo" required>
+							    	<input type="file" id="imgfile" class="form-control-sm image fileimg form-control" aria-describedby="fileHelpInline" name="up_photo" required>
 							  	</div>
 							  	<div class="col-auto">
 							    	<span id="fileHelpInline" class="form-text">
@@ -246,30 +302,11 @@ include_once('../autoload.php');
 
 				</div>
 				<div class="card-footer">
-					<a href="../index.php">I've already account. Let me log.</a>
+					
 				</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<footer>
-	
-	  <svg viewBox="0 -20 700 110" width="100%" height="110" preserveAspectRatio="none">
-	    <path transform="translate(0, -20)" d="M0,10 c80,-22 240,0 350,18 c90,17 260,7.5 350,-20 v50 h-700" fill="red" />
-	    <path d="M0,10 c80,-18 230,-12 350,7 c80,13 260,17 350,-5 v100 h-700z" fill="#E6E7E9" />
-	  </svg>
-
-	</footer>
-
-	<!-- bootstrap 5 -->
-	<script src="../assects/js/jquery-3.6.3.min.js"></script>
-	<script src="../assects/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-	<script src="../assects/js/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-	<script src="../assects/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-	
-	<!-- main script -->
-	<script src="../assects/js/main.js"></script>
-
-</body>
-</html>
+<?php include_once('footer.php');?>

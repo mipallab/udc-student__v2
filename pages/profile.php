@@ -1,5 +1,19 @@
 <?php include_once('matha.php');?>
+	
+	<!-- search field -->
+	<div class="container">
+		<div class="card shadow w-25 my-4">
+			<div class="card-body">
+				<form action="">
+					<label for="stu-search" class="form-label">Name : </label>
+					<input id="stu-search" class="form-control" type="text" placeholder="Search by name">
+					<button class="btn btn-sm btn-info mt-2" type="submit">search</button>
+				</form>
+			</div>
+		</div>
+	</div>
 
+	<!-- show profile field -->
 	<div class="container">
 		<div class="card my-5 shadow">
 			<div class="card-header">

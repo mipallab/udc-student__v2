@@ -35,15 +35,15 @@
             <a class="nav-link " href="./table.php">All Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./edit.php">Edit page</a>
+            <a class="nav-link" href="./edit.php">Edit student profile</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./profile.php">View profile page</a>
+            <a class="nav-link" href="./profile.php">View student profile</a>
           </li>
          
         </ul>
         <div class="d-flex">
-            <img class="rounded-circle border-warning" src="../assects/media/img/dammy.png" alt="" width="50" height="43">
+            <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/dammy.png" alt="" width="50" height="43"></a>
             <a class="btn btn-outline-danger ms-4" href="../logout.php">Logout</a>
         </div>
       </div>

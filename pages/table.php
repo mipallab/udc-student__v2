@@ -1,3 +1,6 @@
+<?php include_once('../config.php');?>
+
+
 <?php include_once('matha.php');?>
 
 	<div class="container">
@@ -21,6 +24,15 @@
 			    </div>
 			</div>
 			<div class="card-body">
+
+				<?php
+
+					//query start
+						$sqlTableSelect = "SELECT * FROM students ORDER BY id DESC";
+						$runTableQuery = mysqli_query($connect, $sqlTableSelect) or die('Table query not run');
+
+						if(mysqli_num_rows($runTableQuery) > 0 ):
+				?>
 				<div class="userTable table-responsive">
 					<table class="table table-striped table-hover table-bordered align-middle">
 						<thead>
@@ -36,14 +48,24 @@
 						    </tr>
 						</thead>
 					  	<tbody>
+					  		<?php
+	
+
+									$sn = 0;
+									while($rowTableQuery = mysqli_fetch_assoc($runTableQuery)):
+
+										$sn ++;
+
+
+							?>
 					    	<tr>
-						      	<th scope="row">1</th>
-						      	<td>Mohammad Rashedul Mahfuz Biplob</td>
-								<td>Male</td>
-								<td>+880 1713 564842</td>
-								<td>Student</td>
-								<td>Post: Monohardi, Upozila: Monohardi, Dis: Norshingdi</td>
-						      	<td><img src="../assects/media/img/dammy.jpg" alt="users photo"></td>
+						      	<th scope="row"><?php echo $sn;?></th>
+						      	<td><?php echo $rowTableQuery['full_name'];?></td>
+								<td><?php echo $rowTableQuery['gender'];?></td>
+								<td><?php echo $rowTableQuery['phone'];?></td>
+								<td><?php echo $rowTableQuery['occupation'];?></td>
+								<td><?php echo $rowTableQuery['present_address'];?></td>
+						      	<td><img src="../assects/media/img/users/<?php echo $rowTableQuery['photo'];?>" alt="users photo"></td>
 						      	<td class="text-center">
 						      		<a href="./edit.php" class="btn btn-outline-secondary btn-sm">
 						      			<i class="bi bi-pencil-fill"></i>
@@ -51,15 +73,19 @@
 						      		<a href="./profile.php" class="btn btn-outline-success btn-sm">
 						      			<i class="bi bi-person-fill"></i>
 						      		</a>
-						      		<button id="delete-btn" class="delete_btn btn btn-outline-danger btn-sm">
-						      			<i class="bi bi-trash-fill"></i>
-						      		</button>
 						      	</td>
 					    	</tr>
-							
+							<?php
+								endwhile;
+							?>
 					  	</tbody>
 					</table>
 				</div>
+				<?php else :
+ 					echo "<h3 class='text-center py-5'>No Record Found...😢😢😢 </h3>";
+				endif;
+				?>
+
 			</div>
 		</div>
 		
