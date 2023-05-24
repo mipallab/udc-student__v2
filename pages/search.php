@@ -1,3 +1,4 @@
+
 <?php include_once('../config.php');?>
 
 
@@ -35,10 +36,10 @@
             <a class="nav-link " href="./signup.php">Student Signup Form</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link live" href="./table.php">All Students</a>
+            <a class="nav-link" href="./table.php">All Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./search.php">Search Student</a>
+            <a class="nav-link live" href="./search.php">Search Student</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./edit.php">Edit student profile</a>
@@ -63,71 +64,22 @@
 		<div class="card my-5 shadow">
 			<div class="card-header d-flex justify-content-between align-items-center">
 				<div class="">
-					<h3>Student List</h3>
+					
+					<h3>Student Search List</h3>
+					
 				</div>
+				<div class="form-group">
+					<select id="src-subject" class="src_subject form-select form-select-sm" name="src_subject">
+						<option selected value="full_name">Name</option>
+						<option value="interested_subject">Subject</option>
+						<option value="present_address">Location</option>
+					</select>
+			      	<input id="get_search" class="form-control me-2" type="text" placeholder="Search" aria-label="Search">
+			    </div>
 			</div>
 			<div class="card-body">
 
-				<?php
-
-					//query start
-						$sqlTableSelect = "SELECT * FROM students ORDER BY id DESC";
-						$runTableQuery = mysqli_query($connect, $sqlTableSelect) or die('Table query not run');
-
-						if(mysqli_num_rows($runTableQuery) > 0 ):
-				?>
-				<div class="userTable table-responsive">
-					<table class="table table-striped table-hover table-bordered align-middle">
-						<thead>
-						    <tr>
-						      	<th scope="col">#</th>
-						      	<th width="125" scope="col">Student ID</th>
-						      	<th width="250" scope="col">Full Name</th>
-								<th scope="col">Phone</th>
-								<th width="300px" scope="col">Subject</th>
-						      	<th width="300" scope="col">Address</th>
-						      	<th width="100" scope="col">Photo</th>
-						      	<th width="100" scope="col">Action</th>
-						    </tr>
-						</thead>
-					  	<tbody>
-					  		<?php
-	
-
-									$sn = 0;
-									while($rowTableQuery = mysqli_fetch_assoc($runTableQuery)):
-
-										$sn ++;
-
-
-							?>
-					    	<tr>
-						      	<th scope="row"><?php echo $sn;?></th>
-						      	<th scope="row"><?php echo $rowTableQuery['stu_id'];?></th>
-						      	<td><?php echo $rowTableQuery['full_name'];?></td>
-								<td><?php echo $rowTableQuery['phone'];?></td>
-								<td><?php echo $rowTableQuery['interested_subject'];?></td>
-								<td><?php echo $rowTableQuery['present_address'];?></td>
-						      	<td><img src="../assects/media/img/users/<?php echo $rowTableQuery['photo'];?>" alt="users photo"></td>
-						      	<td class="text-center">
-						      		<a href="./edit.php" class="btn btn-outline-secondary btn-sm">
-						      			<i class="bi bi-pencil-fill"></i>
-						      		</a>
-						      		<a href="./profile.php" class="btn btn-outline-success btn-sm">
-						      			<i class="bi bi-person-fill"></i>
-						      		</a>
-						      	</td>
-					    	</tr>
-							<?php
-								endwhile;
-							?>
-					  	</tbody>
-					</table>
-				</div>
-				<?php else :
- 					echo "<h3 class='text-center py-5'>No Record Found...😢😢😢 </h3>";
-				endif;
-				?>
+				<div class="search-data-table"></div>
 
 			</div>
 		</div>
@@ -151,5 +103,29 @@
 	<script src="../assects/js/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 	<script src="../assects/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 	<script src="../assects/js/main.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$("#get_search").on('keyup', function(){
+				
+				//get search data
+				let search_data = $(this).val();
+				let search_field = $("#src-subject").val();
+
+				//ajax code for search
+				$.ajax({
+					url : "ajax_live_search.php",
+					type: "POST",
+					data: {
+						search: search_data,
+						src_field : search_field
+						},
+					success: function(data) {
+						$(".search-data-table").html(data);
+					}
+				});
+			});
+		});
+	</script>
 </body>
 </html>
