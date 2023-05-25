@@ -81,7 +81,7 @@
 						<thead>
 						    <tr>
 						      	<th scope="col">#</th>
-						      	<th width="125" scope="col">Student ID</th>
+						      	<th width="150" scope="col">Student ID</th>
 						      	<th width="250" scope="col">Full Name</th>
 								<th scope="col">Phone</th>
 								<th width="300px" scope="col">Subject</th>
@@ -105,15 +105,15 @@
 						      	<th scope="row"><?php echo $sn;?></th>
 						      	<th scope="row"><?php echo $rowTableQuery['stu_id'];?></th>
 						      	<td><?php echo $rowTableQuery['full_name'];?></td>
-								<td><?php echo $rowTableQuery['phone'];?></td>
-								<td><?php echo $rowTableQuery['interested_subject'];?></td>
-								<td><?php echo $rowTableQuery['present_address'];?></td>
+										<td><?php echo $rowTableQuery['phone'];?></td>
+										<td><?php echo $rowTableQuery['interested_subject'];?></td>
+										<td><?php echo $rowTableQuery['present_address'];?></td>
 						      	<td><img src="../assects/media/img/users/<?php echo $rowTableQuery['photo'];?>" alt="users photo"></td>
 						      	<td class="text-center">
-						      		<a href="./edit.php" class="btn btn-outline-secondary btn-sm">
+						      		<a href="./edit.php?edit_id=<?php echo $rowTableQuery['stu_id'];?>" class="btn btn-outline-secondary btn-sm">
 						      			<i class="bi bi-pencil-fill"></i>
 						      		</a>
-						      		<a href="./profile.php" class="btn btn-outline-success btn-sm">
+						      		<a href="./profile.php?view_id=<?php echo $rowTableQuery['stu_id'];?>" class="btn btn-outline-success btn-sm">
 						      			<i class="bi bi-person-fill"></i>
 						      		</a>
 						      	</td>
@@ -133,6 +133,19 @@
 		</div>
 		
 	</div>
+				<nav class="py-5">
+			  <ul class="pagination justify-content-center">
+			    
+			    <li class="page-item mx-1">
+			    	<a class="page-link" href="#">1</a>
+			    </li>
+			    <li class="page-item mx-1 active">
+			      <a class="page-link" href="#">2</a>
+			    </li>
+			    <li class="page-item mx-1">
+			    	<a class="page-link" href="#">3</a></li>
+			  </ul>
+			</nav>
 	<footer>
 	
 	  <svg viewBox="0 -20 700 110" width="100%" height="110" preserveAspectRatio="none">

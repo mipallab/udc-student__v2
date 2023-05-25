@@ -191,6 +191,32 @@
 .navbar-danger .navbar-nav .nav-item {
 	margin-left: 15px;
 }
+
+
+
+.page-item.active .page-link {
+	z-index: 3;
+	color: #fff;
+	background-color: red;
+	border-color: red;
+}
+.page-link:hover {
+ z-index:2;
+ color:white;
+ background-color:red;
+ border-color:red
+}
+.page-link {
+	color: red;
+	border: 1px solid #ca22226e;
+}
+.page-link:focus {
+ z-index:3;
+ color:white;
+ background-color:red;
+ outline:0;
+ box-shadow:0 0 0 .25rem rgba(204,0,0,.25)
+}
 /*------------------------------------
 		Footer 
 --------------------------------------*/

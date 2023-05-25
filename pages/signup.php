@@ -250,6 +250,18 @@ include_once('../autoload.php');
 							<input class="px-2 form-control" id="occopation" type="text" required name="occopation" value="<?php echo (isset($occopation)) ? ($occopation) : ("");?>">
 						</div>
 
+						<!-- <div class="nameField mb-3">
+							<label class="form-label" for="occopation mt-2">Occopation</label><br>
+							<select class="form-select" name="occopation" id="" value="">
+								<option value="">Student</option>
+								<option value="">House Wife</option>
+								<option value="">Doctor</option>
+								<option value="">Engineer</option>
+								<option value="">Job Holder</option>
+								<option value="">Government Service Holder</option>
+							</select>
+						</div> -->
+
 						<!-- phone filed -->
 						<div class="nameField mb-3">
 							<label class="form-label" for="nubmer mt-2">Phone Number</label><br>
@@ -277,7 +289,7 @@ include_once('../autoload.php');
 									<label class="form-check-label pe-auto" for="drowing">Drowing</label>
 							  	</div>
 							  	<div class="form-check form-check-inline">
-									<input class="form-check-input" type="checkbox" id="acting" value="Acting" name="interested_sub[]">
+									<input class="form-check-input" type="checkbox" id="acting" value="acting" name="interested_sub[]">
 									<label class="form-check-label pe-auto" for="acting">Acting</label>
 							  	</div>
 								<div class="form-check form-check-inline">
