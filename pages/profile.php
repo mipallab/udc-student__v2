@@ -73,7 +73,7 @@
 			<div class="card-body">
 				<form action="">
 					<label for="stu-search" class="form-label">Name : </label>
-					<input id="stu-search" class="form-control" type="text" name="get_stu_id" placeholder="Search by student id">
+					<input id="stu-search" class="form-control" type="text" name="get_stu_id" placeholder="Search by student id" value="<?php echo $view_id;?>">
 					<button class="btn btn-sm btn-info mt-2" type="submit">search</button>
 				</form>
 			</div>
@@ -159,6 +159,11 @@
 						</tr>
 					  </tbody>
 					</table>
+				</div>
+			</div>
+			<div class="card-footer py-3">
+				<div class="text-end">
+				    <a href="#">Delete</a>
 				</div>
 			</div>
 		</div>

@@ -60,92 +60,10 @@
 
 
 	<div class="container">
-		<div class="card my-5 shadow">
-			<div class="card-header d-flex justify-content-between align-items-center">
-				<div class="">
-					<h3>Student List</h3>
-				</div>
-			</div>
-			<div class="card-body">
-
-				<?php
-
-					//query start
-						$sqlTableSelect = "SELECT * FROM students ORDER BY id DESC";
-						$runTableQuery = mysqli_query($connect, $sqlTableSelect) or die('Table query not run');
-
-						if(mysqli_num_rows($runTableQuery) > 0 ):
-				?>
-				<div class="userTable table-responsive">
-					<table class="table table-striped table-hover table-bordered align-middle">
-						<thead>
-						    <tr>
-						      	<th scope="col">#</th>
-						      	<th width="150" scope="col">Student ID</th>
-						      	<th width="250" scope="col">Full Name</th>
-								<th scope="col">Phone</th>
-								<th width="300px" scope="col">Subject</th>
-						      	<th width="300" scope="col">Address</th>
-						      	<th width="100" scope="col">Photo</th>
-						      	<th width="100" scope="col">Action</th>
-						    </tr>
-						</thead>
-					  	<tbody>
-					  		<?php
-	
-
-									$sn = 0;
-									while($rowTableQuery = mysqli_fetch_assoc($runTableQuery)):
-
-										$sn ++;
-
-
-							?>
-					    	<tr>
-						      	<th scope="row"><?php echo $sn;?></th>
-						      	<th scope="row"><?php echo $rowTableQuery['stu_id'];?></th>
-						      	<td><?php echo $rowTableQuery['full_name'];?></td>
-										<td><?php echo $rowTableQuery['phone'];?></td>
-										<td><?php echo $rowTableQuery['interested_subject'];?></td>
-										<td><?php echo $rowTableQuery['present_address'];?></td>
-						      	<td><img src="../assects/media/img/users/<?php echo $rowTableQuery['photo'];?>" alt="users photo"></td>
-						      	<td class="text-center">
-						      		<a href="./edit.php?edit_id=<?php echo $rowTableQuery['stu_id'];?>" class="btn btn-outline-secondary btn-sm">
-						      			<i class="bi bi-pencil-fill"></i>
-						      		</a>
-						      		<a href="./profile.php?view_id=<?php echo $rowTableQuery['stu_id'];?>" class="btn btn-outline-success btn-sm">
-						      			<i class="bi bi-person-fill"></i>
-						      		</a>
-						      	</td>
-					    	</tr>
-							<?php
-								endwhile;
-							?>
-					  	</tbody>
-					</table>
-				</div>
-				<?php else :
- 					echo "<h3 class='text-center py-5'>No Record Found...😢😢😢 </h3>";
-				endif;
-				?>
-
-			</div>
-		</div>
-		
+		<div id="stu_table">			
+		</div>		
 	</div>
-				<nav class="py-5">
-			  <ul class="pagination justify-content-center">
-			    
-			    <li class="page-item mx-1">
-			    	<a class="page-link" href="#">1</a>
-			    </li>
-			    <li class="page-item mx-1 active">
-			      <a class="page-link" href="#">2</a>
-			    </li>
-			    <li class="page-item mx-1">
-			    	<a class="page-link" href="#">3</a></li>
-			  </ul>
-			</nav>
+			
 	<footer>
 	
 	  <svg viewBox="0 -20 700 110" width="100%" height="110" preserveAspectRatio="none">
@@ -164,5 +82,29 @@
 	<script src="../assects/js/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 	<script src="../assects/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 	<script src="../assects/js/main.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			function loadTable(page) {
+				$.ajax({
+					url: "pagination_page.php",
+					type: "POST",
+					data: {page_no: page},
+					success: function (data) {
+						$("#stu_table").html(data);
+					}
+				});
+			}
+			loadTable();
+
+			//pagiantion 
+			$(document).on("click","#pagination li a",function(e){
+				e.preventDefault();
+				let page_id = $(this).attr("id");
+
+				loadTable(page_id);
+			});
+		});
+	</script>
 </body>
 </html>

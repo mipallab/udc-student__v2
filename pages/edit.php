@@ -4,6 +4,66 @@
 
 		$edit_id = $_GET['edit_id'] ?? $_GET['get_stu_id'] ?? " ";
 
+
+		if(isset($_POST['submit'])) {
+
+		$error = array();
+		//POST data
+		    $address 					= $_POST['address'] ;
+		    $occopation 			= $_POST['occopation'] ;
+		    $phone 						= $_POST['phone'] ;		   
+		    $email 						= $_POST['email'] ;
+		    $username 				= $_POST['username'] ;
+		    $password					= $_POST['password'] ;
+
+
+
+		// username exists valid
+		    $sqlusernameselect = "SELECT username FROM students WHERE username = '$username'";
+		    $run_username_query = mysqli_query($connect, $sqlusernameselect) or die('select query not run');
+		    $result_username = mysqli_fetch_assoc($run_username_query);
+		    $check_username = $result_username['username'] ?? " ";
+		    if($username === $check_username) {
+		    	$error['username'] = '"'. $username .'" username already exists! Please try another username';
+		    }
+
+
+		// email exists valid
+		    $sqlemailselect = "SELECT email FROM students WHERE email = '$email'";
+		    $run_email_query = mysqli_query($connect, $sqlemailselect) or die('select query not run');
+		    $result_email = mysqli_fetch_assoc($run_email_query);
+		    $check_email = $result_email['email'] ?? ' ';
+		    if($email === $check_email) {
+		    	$error['email'] = '"'. $email .'" email already exists! Please try another email';
+		    }else {
+		    	$email = $_POST['email'] ;
+		    }
+
+		    
+	    //interested subject
+		    $interested = $_POST['interested_sub'];
+			$chk = '';
+			foreach($interested as $chk1)  
+		   	{  
+		      $chk .= $chk1.", ";  
+		   	}  
+		   	$interested_sub = substr($chk,0,-2);		   	
+
+		   	
+		if(count($error) === 0) {
+
+
+			//send query
+				$sql = "UPDATE `students` SET present_address = '$address', occupation = '$occopation', interested_subject = '$interested_sub', email = '$email', username = '$username', password ='$password' WHERE `stu_id` = '$edit_id'";
+				mysqli_query($connect, $sql) or die('query not send');
+
+			//redirect page
+				header("location:./profile.php?view_id=$edit_id");
+
+		}
+
+	}
+
 ?>
 
 
@@ -75,8 +135,8 @@
 			<div class="card-body">
 				<form action="" method="GET">
 					<label for="stu-search" class="form-label">Name : </label>
-					<input id="stu-search" class="form-control" type="text" name="get_stu_id" placeholder="Search by student id" value="">
-					<button class="btn btn-sm btn-info mt-2" type="submit">search</button>
+					<input id="stu-search" class="form-control" type="text" name="get_stu_id" placeholder="Search by student id" value="<?php echo $edit_id?>">
+					<button class="btn btn-sm btn-warning mt-2" type="submit">search</button>
 				</form>
 			</div>
 		</div>
@@ -109,35 +169,36 @@
 							  <tbody>
 							    <tr>
 							      	<th scope="row">Full Name</th>
-							      	<td><input class="form-control" type="text" value="<?php echo $edit_row['full_name'];?>"></td>
+							      	<td><?php echo $edit_row['full_name'];?></td>
 							    </tr>
 							    <tr>
 							      	<th scope="row">Father's Name</th>
-							      	<td><input class="form-control" type="text" value="<?php echo $edit_row['father_name'];?>"></td>
+							      	<td><?php echo $edit_row['father_name'];?></td>
 							    </tr>
 							    <tr>
 							      	<th scope="row">Mother's Name</th>
-							      	<td><input class="form-control" type="text" value="<?php echo $edit_row['mother_name'];?>"></td>
+							      	<td><?php echo $edit_row['mother_name'];?></td>
 							    </tr>
-								<tr>
-									<th scope="row">Present Address</th>
-									<td><input class="form-control" type="address" value="<?php echo $edit_row['present_address'];?>"></td>
-								</tr>
-								<tr>
+							   <tr>
 									<th scope="row">Date of Birth</th>
-									<td><input class="form-control" type="date" onchange="ageCalculator()" value="<?php echo $edit_row['date_of_birth'];?>"></td>
+									<td><?php echo $edit_row['date_of_birth'];?></td>
 								</tr>
 								<tr>
 									<th scope="row">Old</th>
-									<td><input class="form-control" type="num" value="<?php echo $edit_row['age'];?>"></td>
+									<td><?php echo $edit_row['age'];?></td>
 								</tr>
 								<tr>
+									<th scope="row">Present Address</th>
+									<td><input name="address" class="form-control" type="address" value="<?php echo $edit_row['present_address'];?>"></td>
+								</tr>
+								
+								<tr>
 									<th scope="row">Occopation</th>
-									<td><input class="form-control" type="text" value="<?php echo $edit_row['occupation'];?>"></td>
+									<td><input name="occopation" class="form-control" type="text" value="<?php echo $edit_row['occupation'];?>"></td>
 								</tr>
 								<tr>
 									<th scope="row">Phone Number</th>
-									<td><input class="form-control" type="tel" value="<?php echo $edit_row['phone'];?>"></td>
+									<td><input name="phone" class="form-control" type="tel" value="<?php echo $edit_row['phone'];?>"></td>
 								</tr>
 								<tr>
 									<th scope="row">Interested Subject</th>
@@ -152,7 +213,7 @@
 											<legend class="w-auto float-none fs-6"></legend>
 
 											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="checkbox" id="song" value="song" name="interested_sub" 
+												<input class="form-check-input" type="checkbox" id="song" value="song" name="interested_sub[]" 
 
 													 <?php echo (in_array("song",$ins_sub)) ? 'checked' : " "; ?> 
 
@@ -160,7 +221,7 @@
 												<label class="form-check-label" for="song">Song</label>
 										  </div>
 										  <div class="form-check form-check-inline">
-												<input class="form-check-input" type="checkbox" size="30" id="dance" value="dance" name="interested_sub" 
+												<input class="form-check-input" type="checkbox" size="30" id="dance" value="dance" name="interested_sub[]" 
 													
 													<?php echo (in_array("dance",$ins_sub)) ? "checked" : " "; ?>
 												
@@ -168,7 +229,7 @@
 												<label class="form-check-label" for="dance">Dance</label>
 										  </div>
 											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="checkbox" id="recitation" value="recitation" name="interested_sub" 
+												<input class="form-check-input" type="checkbox" id="recitation" value="recitation" name="interested_sub[]" 
 
 														<?php echo (in_array("recitation",$ins_sub)) ? "checked" : " "; ?>
 
@@ -184,14 +245,14 @@
 												<label class="form-check-label pe-auto" for="drowing">Drowing</label>
 										  </div>
 										  <div class="form-check form-check-inline">
-												<input class="form-check-input" type="checkbox" id="acting" value="acting" name="interested_sub" 
+												<input class="form-check-input" type="checkbox" id="acting" value="acting" name="interested_sub[]" 
 
 													<?php echo (in_array("acting",$ins_sub)) ? "checked" : " "; ?>
 												>
 												<label class="form-check-label" for="acting">Acting</label>
 										  </div>
 											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="checkbox" id="tobol" value="tobol" name="interested_sub" 
+												<input class="form-check-input" type="checkbox" id="tobol" value="tobol" name="interested_sub[]" 
 
 													<?php echo (in_array("tobol",$ins_sub)) ? "checked" : " "; ?>
 
@@ -199,39 +260,42 @@
 												<label class="form-check-label" for="tobol">Tobol</label>
 										  </div> 
 										</fieldset>
-										<?php
-											
-										?>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">Gender</th>
 									<td>										
-										<fieldset class="border p-2">
-											<!-- <legend  class="float-none w-auto p-2 fs-6"></legend> -->
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="gender" id="male" value="male" <?php echo ($edit_row['gender'] == "male") ? ("checked") : (" ") ?> >
-												<label class="form-check-label" for="male">Male</label>
-											</div>
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="gender" id="female" value="female" <?php echo ($edit_row['gender'] == "female") ? ("checked") : (" ") ?> >
-												<label class="form-check-label" for="female">Female</label>
-											</div>
-										 </fieldset>
+												<?php echo $edit_row['gender']; ?>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">Email</th>
-									<td><input class="form-control" type="email" value="<?php echo $edit_row['email'];?>"></td>
+									<td><input name="email" class="form-control" type="email" value="<?php echo $edit_row['email'];?>">
+											<div class="text-danger">
+												<?php
+													if(isset($error['email'])) {
+														echo $error['email'];
+													}
+												?>
+											</div>
+									</td>
 								</tr>
 								<tr>
 									<th scope="row">Username</th>
-									<td><input class="form-control" type="text" value="<?php echo $edit_row['username'];?>"></td>
+									<td><input name="username" class="form-control" type="text" value="<?php echo $edit_row['username'];?>">
+										<div class="text-danger">
+												<?php
+													if(isset($error['username'])) {
+														echo $error['username'];
+													}
+												?>
+											</div>
+									</td>
 								</tr>
 								<tr>
 									<th scope="row">Password</th>
 									<td class="input-group">
-										<input class="form-control" id="pass" type="password" value="<?php echo $edit_row['password'];?>">
+										<input name="password" class="form-control" id="pass" type="password" value="<?php echo $edit_row['password'];?>">
 										<span id="btn" onclick="passHideShow()" class="btn btn-warning btn-sm mx-3">show</span>
 
 									</td>
@@ -239,8 +303,7 @@
 							  </tbody>
 
 							</table>
-							<button class="btn btn-sm btn-secondary">+ add filed</button> <br>
-							<input class="btn btn-primary my-3" type="submit" value="Update">
+							<input class="btn btn-outline-danger ms-4 my-3" type="submit" name="submit" value="Update">
 						</form>
 					</div>
 				</div>

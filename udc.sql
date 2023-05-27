@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2023 at 08:06 PM
+-- Generation Time: May 27, 2023 at 06:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -84,17 +84,22 @@ INSERT INTO `students` (`id`, `stu_id`, `full_name`, `full_name_bn`, `father_nam
 (24, 'udc-stu-0002', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Mahfuzul Islam', 'Shuly', '1650 Monohardi, Narshingdi', '1997-05-14', 26, 'Student', '+8801892493619', 'song, tobol', 'male', 'showrav@gmail.com', 'ri_showrav', '1122', 'Screenshot_5.png', 1, 0, '2023-05-22 06:44:00', NULL),
 (25, 'udc-stu-0003', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Mahfuzul Islam', 'Roushonara', '1650 Monohardi, Narshingdi', '1984-05-14', 39, 'Student', '+8801892493619', 'song, tobol', 'male', 'riashowrav@gmail.com', 'ri_showav', '1122', 'DSC_0006.JPG', 1, 0, '2023-05-22 06:48:42', NULL),
 (26, 'udc-stu-0004', 'Sristy Dey', 'সৃষ্টি দে', 'Probir Dey', 'Seuty Dey', 'Vill: Chandanbari, Pouroshovha: Monohardi, upozila: Monohardi, Dis: Narshingdi', '2022-04-20', 1, 'Student', '+8801892493619', 'song, dance', 'male', 'sristy@ami.com', 'sristy', '1122', 'sristy.png', 1, 0, '2023-05-22 06:52:04', NULL),
-(27, 'udc-stu-0005', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Mahfuzul Islam', 'Roushonara', '1650 Monohardi, Narshingdi', '1997-05-19', 26, 'Student', '012232142234', 'song, dance', 'male', 'rahemul@gmail.com', 'rahemul', '1122', 'batman.png', 1, 0, '2023-05-22 06:56:32', NULL),
+(27, 'udc-stu-0005', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Mahfuzul Islam', 'Roushonara', 'Monohardi, Narshingdi', '1997-05-19', 26, 'House Wife', '012232142234', 'song, dance, acting, tobol', 'male', 'rahemu35dsfd345l@gmail.com', 'rahem53fdf45ul', '113453422', 'batman.png', 1, 0, '2023-05-22 06:56:32', NULL),
 (28, 'udc-stu-0006', 'Surjo Shaha', 'সূর্য সাহা', 'Susan Shaha', 'Pore Banu', '1650 Hindu Para, Monohardi Narshingdi', '2010-11-10', 12, 'Student', '017263647281', 'song, tobol', 'male', 'surjo@gmail.com', 'surjo', '12312', 'surojo.png', 1, 0, '2023-05-22 07:10:08', NULL),
 (29, 'udc-stu-0007', 'Prgga Paromita Ray', 'প্রজ্ঞা পারমিতা রায়', 'Sukla Ray', 'Mommy Roy', 'Harordiya, Monohardi, Narshingdi, Dhaka, Banglasesh', '2016-05-12', 7, 'Student', '017263247281', 'song, dance, tobol', 'male', 'progga@prgga.me', 'progga', '123123', 'progga.png', 1, 0, '2023-05-22 07:15:24', NULL),
-(30, 'udc-stu-0008', 'Shobha dip', 'শুভ দিপ', 'Kajdfje Dip', 'Mouwe Dip', '1650 Monohardi, Narshingdi', '2017-05-17', 6, 'Student', '012232142234', 'song, dance, drowing, Acting, tobol', 'male', 'shobha@gmail.com', 'shovhaw', '1111', 'shobha.png', 1, 0, '2023-05-22 07:29:12', NULL),
-(31, 'udc-stu-0009', 'Potul', 'পুতুল', 'Susan Shaha', 'Mommy Roy', '1650 Monohardi, Narshingdi', '1997-05-13', 26, 'Student', '+8801892493619', 'song, dance, recitation, drowing, Acting, tobol, g', 'female', 'potul@gmail.com', 'potol', '1111', 'potul.png', 1, 0, '2023-05-24 15:50:01', NULL),
-(32, 'udc-stu-0010', 'Totul', 'তুতুল', 'Susan Shaha', 'Shuly', '1650 Monohardi, Narshingdi', '2016-04-19', 7, 'Student', '+8801892493619', 'song, dance, recitation, drowing, Acting, tobol', 'female', 'totul@gmail.com', 'totoul', '1212', 'totul.png', 1, 0, '2023-05-24 15:53:35', NULL),
-(33, 'udc-stu-0011', 'tasfuq Hosen', 'তাসফিক', 'Emama Hosen', 'Surnana Islam', 'Harordiya, Monohardi, Narshingdi, Dhaka, Banglasesh', '2018-04-18', 5, 'Student', '+8801892493619', 'song, dance, recitation, drowing, Acting, tobol', 'male', 'tasfiq@gmail.com', 'tasfiq', '1212', 'tashfiq.png', 1, 0, '2023-05-24 17:01:55', NULL),
+(30, 'udc-stu-0008', 'Shobha dip', 'শুভ দিপ', 'Kajdfje Dip', 'Mouwe Dip', '1650 Monohardi, Narshingdi', '2017-05-17', 6, 'Student', '012232142234', 'song, dance, drowing, acting, tobol', 'male', 'shobha@gmail.com', 'shovhaw', '1111', 'shobha.png', 1, 0, '2023-05-22 07:29:12', NULL),
+(31, 'udc-stu-0009', 'Potul', 'পুতুল', 'Susan Shaha', 'Mommy Roy', '1650 Monohardi, Narshingdi', '1997-05-13', 26, 'Student', '+8801892493619', 'song, dance, recitation, drowing, acting, tobol', 'female', 'potul@gmail.com', 'potol', '1111', 'potul.png', 1, 0, '2023-05-24 15:50:01', NULL),
+(32, 'udc-stu-0010', 'Totul', 'তুতুল', 'Susan Shaha', 'Shuly', '1650 Monohardi, Narshingdi', '2016-04-19', 7, 'Student', '+8801892493619', 'song, dance, recitation, drowing, acting, tobol', 'female', 'totul@gmail.com', 'totoul', '1212', 'totul.png', 1, 0, '2023-05-24 15:53:35', NULL),
+(33, 'udc-stu-0011', 'tasfuq Hosen', 'তাসফিক', 'Emama Hosen', 'Surnana Islam', 'Harordiya, Monohardi, Narshingdi, Dhaka, Banglasesh', '2018-04-18', 5, 'Student', '+8801892493619', 'song, dance, recitation, drowing, acting, tobol', 'male', 'tasfiq@gmail.com', 'tasfiq', '1212', 'tashfiq.png', 1, 0, '2023-05-24 17:01:55', NULL),
 (34, 'udc-stu-0012', 'Tora', 'তোড়া', 'Susan Shaha', 'Roushonara', 'Dhaka', '2011-04-12', 12, 'Student', '+8801713564842', 'song, dance, drowing', 'female', 'tara@gmail.com', 'tora', 'Pallab@123', 'tora.png', 1, 0, '2023-05-24 17:18:29', NULL),
 (35, 'udc-stu-0013', 'Pornota', 'পূর্ণতা', 'Abbo', 'Shuly', 'Dhaka', '2015-05-20', 8, 'Student', '+8801713564842', 'song, dance, drowing, tobol', 'female', 'pornota@gmail.com', 'pornota', '1111', 'pornota.png', 1, 0, '2023-05-24 17:24:07', NULL),
-(36, 'udc-stu-0014', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Abbo', 'Shuly', 'Dhaka', '2023-05-12', 0, 'Student', '+8801892493619', 'song, dance, recitation, drowing, Acting, tobol', 'male', 'show@gmail.com', 'shw', '12', 'showrav.png', 1, 0, '2023-05-24 17:44:23', NULL),
-(39, 'udc-stu-0015', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Abbo', 'Shuly', 'Dhaka', '2019-04-09', 4, 'Student', '+8801892493619', 'tobol', 'male', 'rishowrauv@gmail.com', 'pallabt', 'Pallab@123', 'Screenshot_11.png', 1, 0, '2023-05-24 17:57:47', NULL);
+(36, 'udc-stu-0014', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Abbo', 'Shuly', 'Dhaka', '2023-05-12', 0, 'Student', '+8801892493619', 'song, dance, recitation, drowing, acting, tobol', 'male', 'show@gmail.com', 'shw', '12', 'showrav.png', 1, 0, '2023-05-24 17:44:23', NULL),
+(39, 'udc-stu-0015', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Abbo', 'Shuly', 'Dhaka', '2019-04-09', 4, 'Student', '+8801892493619', 'tobol', 'male', 'rishowrauv@gmail.com', 'pallabt', 'Pallab@123', 'Screenshot_11.png', 1, 0, '2023-05-24 17:57:47', NULL),
+(40, 'udc-stu-0016', 'Majadul Islam Pallab', 'মাজেদুল ইসলাম পল্লব', 'Emama Hosen', 'Shuly', 'Dhaka', '2023-05-18', 0, 'Student', '+8801713564842', 'dance, recitation, drowing', 'male', 'pallab1111@gmail.com', 'pallab122121', 'Pallab@123', '245165379_393392342377490_7525848470403508792_n.jpg', 1, 0, '2023-05-25 14:52:38', NULL),
+(41, 'udc-stu-0017', 'Pornota', 'সৃষ্টি দে', 'Abbo', 'Roushonara', 'Dhaka', '1984-05-23', 39, 'Student', '+8801713564842', 'dance, drowing', 'female', 'pallab482@gmail.com.bd', 'showr', '123123', 'Screenshot_13.png', 1, 0, '2023-05-25 16:05:37', NULL),
+(42, 'udc-stu-0018', 'Sruty', 'স্রুতি', 'Susan Shaha', 'Mommy Roy', 'Harordiya, Monohardi, Narshingdi, Dhaka, Banglasesh', '2018-05-15', 5, 'Student', '+8801734820523', 'song, tobol', 'female', 'sruty@gmail.com', 'sruty', '1111', 'sruty2.png', 1, 0, '2023-05-27 16:41:02', NULL),
+(43, 'udc-stu-0019', 'Pornota', 'তুতুল', 'Emama Hosen', 'Roushonara', 'Monohardi, Narshingdi', '2016-05-17', 7, 'Student', '+8801734820523', 'song, tobol', 'male', 'pornota@ami.com', 'pornota1', '1212', 'pornota2.png', 1, 0, '2023-05-27 16:43:29', NULL),
+(44, 'udc-stu-0020', 'Majadul Islam Pallab23', 'মাজেদুল ইসলাম পল্লব3', 'Susan Shaha', 'Shuly', 'Monohardi, Narshingdi', '2009-10-26', 13, 'Student', '+8801713564842', 'tobol', 'male', 'pallabse@gmail.com', 'pallabsefd', 'Pallab@123', 'DSC_0007 (1).JPG', 1, 0, '2023-05-27 16:45:06', NULL);
 
 --
 -- Indexes for dumped tables
@@ -126,7 +131,7 @@ ALTER TABLE `administrator_users`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
