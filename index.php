@@ -1,3 +1,49 @@
+<?php
+session_start();
+	include_once('./config.php');
+
+
+	if(isset($_POST['submit'])) {
+
+		//GET DATA
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$error = array(" ");
+		// username exists valid
+		    $sqlusernameselect = "SELECT * FROM administrator_users WHERE ad_usersname = '$username'";
+		    $run_username_query = mysqli_query($connect, $sqlusernameselect) or die('ad_select query not run');
+		    $result_username = mysqli_fetch_assoc($run_username_query);
+		    $check_username = $result_username['ad_usersname'] ?? " ";
+		    $check_password = $result_username['ad_password'] ?? " ";
+		    $ad_id = $result_username['ad_id'] ?? " ";
+
+
+		    if($username === $check_username) {
+		    	
+		    	if($password === $check_password) {
+
+		    		$_SESSION['ad_id'] = $ad_id;
+		    		$_SESSION['ad_login'] = "login";
+
+		    		$location = './pages/ad_profile.php?view_id='.$ad_id;
+						header("location: $location");
+
+		    	}else{
+		    		$error['password'] = "password not match!";
+		    	}
+		    }else {
+		    	$error['email'] = "Email not match!";
+		    }
+
+
+
+	}
+
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,10 +72,6 @@
 		</div>
 	</header>
 
-
-	
-	
-
 	<div class="container">
 		<div class="fromtable mx-auto">
 			<div class="card my-5 shadow">
@@ -37,19 +79,33 @@
 					<h2>Administrator Log In</h2>
 				</div>
 				<div class="card-body">
-					<form action="#" >
+					<form action="#" method="POST">
 						<div class="userField ">
 							<label for="username mt-2">Username</label><br>
-							<input class="px-2 form-control" id="username" type="text">
+							<input class="px-2 form-control" id="username" type="text" name="username" value="<?php echo (isset($username)) ? ($username) : ("");?>">
+							<div class="text-danger">
+								<?php
+									if(isset($error['email'])) {
+										echo $error['email'];
+									}
+								?>	
+							</div>
 						</div>
 						<div class="userPass mt-3">
 							<label for="password">Password</label><br>
-							<input class="px-2 form-control" id="password" type="password">
+							<input class="px-2 form-control" id="password" type="password" name="password" value="<?php echo (isset($password)) ? ($password) : ("");?>">
+								<div class="text-danger">
+									<?php
+										if(isset($error['password'])) {
+											echo $error['password'];
+										}
+									?>
+								</div>
 						</div>
 						<div class="hideshow">
 							<input class="form-check-input" id="showPass" type="checkbox" onclick="togglePass()"> <label class="form-check-label" for="showPass">Show Password</label>
 						</div>
-						<input class="mt-3 btn btn-outline-danger" type="submit" value="Log in">
+						<input class="mt-3 btn btn-outline-danger" type="submit" value="Log in" name="submit">
 					</form>
 					
 				</div>

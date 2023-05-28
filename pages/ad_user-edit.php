@@ -1,8 +1,20 @@
 <?php 
+	session_start();
+
+	//if Administrator not login
+	if(!$_SESSION['ad_login']){
+		header('location: ../index.php');
+	}
+
 		
 		include_once('../config.php');
 
-		//$edit_id = $_GET['edit_id'] ?? $_GET['get_stu_id'] ?? " ";
+		$ad_user_id = $_SESSION['ad_id'];
+
+		// Administrator SQL
+	  	$admin_sql = "SELECT * FROM administrator_users WHERE ad_id = '$ad_user_id'";
+		  $admin_result = mysqli_query($connect, $admin_sql) or die('ad_select query not run');
+		  $admin_row = mysqli_fetch_assoc($admin_result);
 
 
 		if(isset($_POST['submit'])) {
@@ -16,20 +28,20 @@
 		    $password					= $_POST['password'] ;
 
 
-	echo "<pre>";
-	print_r($_POST);  	
-	echo "</pre>";  	
+	// echo "<pre>";
+	// print_r($_POST);  	
+	// echo "</pre>";  	
 
 		   	
-		if(count($error) === 1) {
+		if(count($error) === 0) {
 
 
 			//send query
-				$sql = "UPDATE `administrator_users` SET ad_name = '$fullname', ad_role = '$role', ad_usersname = '$username', ad_email = '$email', ad_password ='$password' WHERE `stu_id` = '$edit_id'";
+				$sql = "UPDATE `administrator_users` SET ad_name = '$fullname', ad_role = '$role', ad_usersname = '$username', ad_email = '$email', ad_password ='$password' WHERE `ad_id` = '$ad_user_id'";
 				mysqli_query($connect, $sql) or die('query not send');
 
 			//redirect page
-				header("location:./profile.php?view_id=$edit_id");
+				header("location:./ad_profile.php?view_id=$ad_user_id");
 
 		}
 
@@ -42,7 +54,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrator user</title>
+  <title><?php echo $admin_row['ad_name'];?></title>
 
 
   <!-- bootstrap 5 icon-->
@@ -81,7 +93,7 @@
          
         </ul>
         <div class="d-flex">
-            <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/dammy.png" alt="" width="50" height="43"></a>
+            <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/users/<?php echo $admin_row['ad_photo'];?>" alt="" width="50" height="50"></a>
             <a class="btn btn-outline-danger ms-4" href="../logout.php">Logout</a>
         </div>
       </div>
@@ -101,8 +113,8 @@
 				<div class="profile-head bg-light border" style='background-image: url("../assects/media/img/users/userBG.jpg")'>
 					<div class="user-pic">
 						<div class="pic">
-							<img width="250px" height="250px" class="profile-pic shadow border border-light border-5 rounded-circle" src="../assects/media/img/dammy.png" alt="Dammy">
-							<h2 class="text-center my-2">Rahemul Islam Showrav</h2>
+							<img width="250px" height="250px" class="profile-pic shadow border border-light border-5 rounded-circle" src="../assects/media/img/users/<?php echo $admin_row['ad_photo'];?>" alt="Dammy">
+							<h2 class="text-center my-2"><?php echo $admin_row['ad_name'];?></h2>
 						</div>
 					</div>
 				</div>
@@ -114,31 +126,33 @@
 							  <tbody>
 							    <tr>
 							      	<th scope="row">Full Name</th>
-							      	<td><input class="form-control" type="text" value="Rahemul Islam Showrav" name="fullname"></td>
+							      	<td><input class="form-control" type="text" value="<?php echo $admin_row['ad_name'];?>" name="fullname"></td>
 							    </tr>
 							    <tr>
 							      	<th scope="row">Role</th>
 							      	<td>
 								      	<select class="form-select" name="role">
-												  	<option selected>Select </option>
-												  	<option value="administrator">Administrator</option>
-												  	<option value="editor">Editor</option>
-												  	<option value="user">User</option>
+												  	<option 
+												  		<?php echo ($admin_row['ad_role'] === "administrator") ? "selected" : (" ");?> value="administrator">
+												  		Administrator
+												  	</option>
+												  	<option <?php echo ($admin_row['ad_role'] === "editor") ? "selected" : (" ");?> value="editor">Editor</option>
+												  	<option <?php echo ($admin_row['ad_role'] === "user") ? "selected" : (" ");?> value="user">User</option>
 												</select>
-									</td>
+										</td>
 							    </tr>
 								<tr>
 									<th scope="row">Email</th>
-									<td><input class="form-control" type="email" value="rishowrav@gmail.com" name="email"></td>
+									<td><input class="form-control" type="email" value="<?php echo $admin_row['ad_email'];?>" name="email"></td>
 								</tr>
 								<tr>
 									<th scope="row">Username</th>
-									<td><input class="form-control" type="text" value="rishowrav" name="username"></td>
+									<td><input class="form-control" type="text" value="<?php echo $admin_row['ad_usersname'];?>" name="username"></td>
 								</tr>
 								<tr>
 									<th scope="row">Password</th>
 									<td class="input-group">
-										<input class="form-control" id="pass" type="password" value="123412" name="password">
+										<input class="form-control" id="pass" type="password" value="<?php echo $admin_row['ad_password'];?>" name="password">
 										<span id="btn" onclick="passHideShow()" class="btn btn-warning btn-sm mx-3">show</span>
 
 									</td>

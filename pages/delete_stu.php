@@ -1,5 +1,12 @@
 <?php
 
+	session_start();
+
+	//if Administrator not login
+	if(!$_SESSION['ad_login']){
+		header('location: ../index.php');
+	}
+
 	include_once('../config.php');
 
 	$del_id = $_POST['id'];

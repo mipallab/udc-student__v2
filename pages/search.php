@@ -1,5 +1,22 @@
+<?php
+	session_start();
 
-<?php include_once('../config.php');?>
+	//if Administrator not login
+	if(!$_SESSION['ad_login']){
+		header('location: ../index.php');
+	}
+
+ include_once('../config.php');
+
+		$ad_user_id = $_SESSION['ad_id'];
+
+		// Administrator SQL
+	  	$admin_sql = "SELECT * FROM administrator_users WHERE ad_id = '$ad_user_id'";
+		  $admin_result = mysqli_query($connect, $admin_sql) or die('ad_select query not run');
+		  $admin_row = mysqli_fetch_assoc($admin_result);
+		
+	?>
+
 
 
 <!DOCTYPE html>
@@ -8,7 +25,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrator user</title>
+  <title><?php echo $admin_row['ad_name'];?></title>
 
 
   <!-- bootstrap 5 icon-->
@@ -50,14 +67,14 @@
          
         </ul>
         <div class="d-flex">
-            <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/dammy.png" alt="" width="50" height="43"></a>
-            <a class="btn btn-outline-danger ms-4" href="../logout.php">Logout</a>
+            <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/users/<?php echo $admin_row['ad_photo'];?>" alt="" width="50" height="50"></a>
+            <a class="btn btn-outline-danger ms-4" href="./logout.php">Logout</a>
         </div>
       </div>
     </div>
   </nav>
 
-</body>
+
 
 
 	<div class="container">

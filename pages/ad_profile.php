@@ -1,10 +1,32 @@
+<?php
+	session_start();
+
+	//if Administrator not login
+	if(!$_SESSION['ad_login']){
+		header('location: ../index.php');
+	}
+
+
+	include_once('../config.php');
+	$ad_user_id = $_SESSION['ad_id'];
+
+		// Administrator SQL
+	  	$admin_sql = "SELECT * FROM administrator_users WHERE ad_id = '$ad_user_id'";
+		  $admin_result = mysqli_query($connect, $admin_sql) or die('ad_select query not run');
+		  $admin_row = mysqli_fetch_assoc($admin_result);
+
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Administrator user</title>
+  <title><?php echo $admin_row['ad_name'];?></title>
 
 
   <!-- bootstrap 5 icon-->
@@ -43,7 +65,7 @@
          
         </ul>
         <div class="d-flex">
-            <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/dammy.png" alt="" width="50" height="43"></a>
+            <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/users/<?php echo $admin_row['ad_photo'];?>" alt="" width="50" height="50"></a>
             <a class="btn btn-outline-danger ms-4" href="../logout.php">Logout</a>
         </div>
       </div>
@@ -63,8 +85,8 @@
 				<div class="profile-head bg-light border" style='background-image: url("../assects/media/img/users/userBG.jpg")'>
 					<div class="user-pic">
 						<div class="pic">
-							<img width="250px" height="250px" class="profile-pic shadow border border-light border-5 rounded-circle" src="../assects/media/img/dammy.png" alt="Dammy">
-							<h2 class="text-center my-2">Rahemul Islam Showrav</h2>
+							<img width="250px" height="250px" class="profile-pic shadow border border-light border-5 rounded-circle" src="../assects/media/img/users/<?php echo $admin_row['ad_photo'];?>" alt="Dammy">
+							<h2 class="text-center my-2"><?php echo $admin_row['ad_name'];?></h2>
 						</div>
 					</div>
 				</div>
@@ -74,24 +96,24 @@
 					  <tbody>
 					    <tr>
 					      	<th scope="row">Full Name</th>
-					      	<td>Rahemul Islam Showrav</td>
+					      	<td><?php echo $admin_row['ad_name'];?></td>
 					    </tr>
 					    <tr>
 					      	<th scope="row">Role</th>
-					      	<td><button class="btn btn-sm btn-secondary">Administrator</button></td>
+					      	<td><button class="btn btn-sm btn-secondary"><?php echo $admin_row['ad_role'];?></button></td>
 					    </tr>
 						<tr>
 							<th scope="row">Email</th>
-							<td>rishowrav@gmail.com</td>
+							<td><?php echo $admin_row['ad_email'];?></td>
 						</tr>
 						<tr>
 							<th scope="row">Username</th>
-							<td>showrav@123</td>
+							<td><?php echo $admin_row['ad_usersname'];?></td>
 						</tr>
 						<tr>
 							<th scope="row">Password</th>
 							<td>
-								<input style="outline:none;border: none;" id="pass" type="password" readonly value="123412">
+								<input style="outline:none;border: none;" id="pass" type="password" readonly value="<?php echo $admin_row['ad_password'];?>">
 								<span id="btn" onclick="passHideShow()" class="btn btn-warning btn-sm mx-3">show</span> 
 							</td>
 						</tr>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2023 at 09:36 AM
+-- Generation Time: May 28, 2023 at 06:35 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -42,8 +42,8 @@ CREATE TABLE `administrator_users` (
 --
 
 INSERT INTO `administrator_users` (`ad_id`, `ad_name`, `ad_role`, `ad_usersname`, `ad_email`, `ad_password`, `ad_photo`) VALUES
-(1, 'Rahemul Islam Showrav', 'Administrator', 'ri_showrav', 'rishowrav@gmail.com', '123412', 'showrav.jpg'),
-(2, 'Majadul Islam Pallab', 'editor', '', 'pallab4842@gamil.com', '1234', 'pallab.jpg');
+(1, 'Rahemul Islam Showrav', 'administrator', 'ri_showrav', 'rishowrav@gmail.com', '123412', 'showrav.png'),
+(2, 'Majadul Islam', 'administrator', 'pallab12', 'pallab4842@gamil.com', '12342', 'pallab.png');
 
 -- --------------------------------------------------------
 
@@ -80,7 +80,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id`, `stu_id`, `full_name`, `full_name_bn`, `father_name`, `mother_name`, `present_address`, `date_of_birth`, `age`, `occupation`, `phone`, `interested_subject`, `gender`, `email`, `username`, `password`, `photo`, `status`, `trash`, `created_at`, `updated_at`) VALUES
-(46, 'udc-stu-0001', 'Rahemul Islam Showrav', 'রাহিমুল ইসলাম সৌরভ', 'Mahfuzul Islam', 'Shuly', '1650 Monohardi, Narshingdi', '1997-08-20', 25, 'Student', '+8801892493619', 'song, dance, acting', 'male', 'showrav@gmail.com', 'showrav', 'showrav@123', 'Screenshot_5.png', 1, 0, '2023-05-28 06:56:00', NULL);
+(47, 'udc-stu-0002', 'Majadul Islam Pallab', 'মাজেদুল ইসলাম পল্লব', 'Mahfuzul Islam', 'Roushonara', '1650 Monohardi, Narshingdi', '1996-12-28', 26, 'Student', '+8801713564842', 'tobol', 'male', 'pallab4842@gmail.com', 'pallab', 'Pallab@123', 'Screenshot_10.png', 1, 0, '2023-05-28 14:35:02', NULL);
 
 --
 -- Indexes for dumped tables
@@ -112,7 +112,7 @@ ALTER TABLE `administrator_users`
 -- AUTO_INCREMENT for table `students`
 --
 ALTER TABLE `students`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
