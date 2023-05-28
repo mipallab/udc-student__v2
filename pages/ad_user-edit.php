@@ -1,3 +1,41 @@
+<?php 
+		
+		include_once('../config.php');
+
+		//$edit_id = $_GET['edit_id'] ?? $_GET['get_stu_id'] ?? " ";
+
+
+		if(isset($_POST['submit'])) {
+
+		$error = array();
+		//POST data
+		    $fullname 				= $_POST['fullname'] ;
+		    $role 						= $_POST['role'] ;	   
+		    $email 						= $_POST['email'] ;
+		    $username 				= $_POST['username'] ;
+		    $password					= $_POST['password'] ;
+
+
+	echo "<pre>";
+	print_r($_POST);  	
+	echo "</pre>";  	
+
+		   	
+		if(count($error) === 1) {
+
+
+			//send query
+				$sql = "UPDATE `administrator_users` SET ad_name = '$fullname', ad_role = '$role', ad_usersname = '$username', ad_email = '$email', ad_password ='$password' WHERE `stu_id` = '$edit_id'";
+				mysqli_query($connect, $sql) or die('query not send');
+
+			//redirect page
+				header("location:./profile.php?view_id=$edit_id");
+
+		}
+
+	}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,31 +114,31 @@
 							  <tbody>
 							    <tr>
 							      	<th scope="row">Full Name</th>
-							      	<td><input class="form-control" type="text" value="Rahemul Islam Showrav"></td>
+							      	<td><input class="form-control" type="text" value="Rahemul Islam Showrav" name="fullname"></td>
 							    </tr>
 							    <tr>
 							      	<th scope="row">Role</th>
 							      	<td>
-								      	<select class="form-select">
-										  	<option selected>Select </option>
-										  	<option value="administrato">Administrator</option>
-										  	<option value="editor">Editor</option>
-										  	<option value="user">User</option>
-										</select>
+								      	<select class="form-select" name="role">
+												  	<option selected>Select </option>
+												  	<option value="administrator">Administrator</option>
+												  	<option value="editor">Editor</option>
+												  	<option value="user">User</option>
+												</select>
 									</td>
 							    </tr>
 								<tr>
 									<th scope="row">Email</th>
-									<td><input class="form-control" type="email" value="rishowrav@gmail.com"></td>
+									<td><input class="form-control" type="email" value="rishowrav@gmail.com" name="email"></td>
 								</tr>
 								<tr>
 									<th scope="row">Username</th>
-									<td><input class="form-control" type="text" value="rishowrav"></td>
+									<td><input class="form-control" type="text" value="rishowrav" name="username"></td>
 								</tr>
 								<tr>
 									<th scope="row">Password</th>
 									<td class="input-group">
-										<input class="form-control" id="pass" type="password" value="123412">
+										<input class="form-control" id="pass" type="password" value="123412" name="password">
 										<span id="btn" onclick="passHideShow()" class="btn btn-warning btn-sm mx-3">show</span>
 
 									</td>
@@ -108,7 +146,7 @@
 							  </tbody>
 							</table>
 							
-							<input class="btn btn-sm btn-outline-primary my-3 d-inline ms-2" type="submit" value="Update">
+							<input class="btn btn-sm btn-outline-primary my-3 d-inline ms-2" type="submit" value="Update" name="submit">
 							<a href="./ad_profile.php" class="btn btn-sm btn-secondary d-inline ms-5">My Profile</a>
 						</form>
 					</div>

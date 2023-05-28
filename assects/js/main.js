@@ -49,7 +49,7 @@
 		/*====================
 			 model box 
 		=====================*/
-
+/*
 		function showConfirm(message, callback) {
 			let confirmBox = document.createElement('div');
 			confirmBox.classList.add('confirm-box');
@@ -103,4 +103,5 @@
 			});
 		});
 		
-	
+	*/
+

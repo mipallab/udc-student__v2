@@ -85,7 +85,13 @@
 ?>
 	<!-- show profile field -->
 	<div class="container">
-		<div class="card my-5 shadow">
+		<div class="text1">
+				<h4 class="text-center my-5" style="display: none;">Delete "<?php echo $view_row['full_name'];?>" Data Successfully.</h4>
+		</div>
+		<div class="text2">
+				<h4 class="text-center my-5" style="display: none;">Delete "<?php echo $view_row['full_name'];?>" Data Unsuccessfull.</h4>
+		</div>
+		<div class="card showTable my-5 shadow" style="display: block;">
 			<div class="card-header">
 				<h1>My Profile</h1>
 			</div>
@@ -163,7 +169,7 @@
 			</div>
 			<div class="card-footer py-3">
 				<div class="text-end">
-				    <a href="#">Delete</a>
+				    <a href="#" class="delete_btn" data-id="<?php echo $view_row['id'];?>">Delete</a>
 				</div>
 			</div>
 		</div>
@@ -194,5 +200,38 @@
 	<script src="../assects/js/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 	<script src="../assects/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 	<script src="../assects/js/main.js"></script>
+
+	<script>
+	
+			$(document).ready(function(){
+				
+					$('.delete_btn').on("click", function(e){
+						e.preventDefault();
+
+						if(confirm('Are you really delete the data?')) {
+
+							let delete_id = $(this).data('id');
+							
+							$.ajax({
+								url : "delete_stu.php",
+								method: "POST",
+								data: {id: delete_id},
+								success: function(data){
+									if(data == 1) {
+										$('.showTable').css('display','none');
+										$('.text1 h4').fadeIn().css('display','block');
+										
+									}else {
+										$('.text2 h4').css('display','block').fadeIn();
+										
+									}
+								}
+							});
+						}
+					});					
+			});
+		
+
+	</script>
 </body>
 </html>

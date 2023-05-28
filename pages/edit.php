@@ -18,27 +18,6 @@
 
 
 
-		// username exists valid
-		    $sqlusernameselect = "SELECT username FROM students WHERE username = '$username'";
-		    $run_username_query = mysqli_query($connect, $sqlusernameselect) or die('select query not run');
-		    $result_username = mysqli_fetch_assoc($run_username_query);
-		    $check_username = $result_username['username'] ?? " ";
-		    if($username === $check_username) {
-		    	$error['username'] = '"'. $username .'" username already exists! Please try another username';
-		    }
-
-
-		// email exists valid
-		    $sqlemailselect = "SELECT email FROM students WHERE email = '$email'";
-		    $run_email_query = mysqli_query($connect, $sqlemailselect) or die('select query not run');
-		    $result_email = mysqli_fetch_assoc($run_email_query);
-		    $check_email = $result_email['email'] ?? ' ';
-		    if($email === $check_email) {
-		    	$error['email'] = '"'. $email .'" email already exists! Please try another email';
-		    }else {
-		    	$email = $_POST['email'] ;
-		    }
-
 		    
 	    //interested subject
 		    $interested = $_POST['interested_sub'];

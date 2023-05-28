@@ -201,14 +201,14 @@ include_once('../autoload.php');
 
 						<!-- full name field -->
 						<div class="fullNameBnField mb-3">
-							<label class="form-label" for="fullname mt-2">Full Name</label>
+							<label class="form-label" for="fullname">Full Name</label>
 							<input class="px-2 form-control" id="fullname" type="text" required name="full_name" value="<?php echo (isset($fullName)) ? ($fullName) : ("");?>">
 							<span class="form-text">Must match NID or DOB card</span>
 						</div>
 
 						<!-- full bangla name field -->
 						<div class="fullNameBnField mb-3">
-							<label class="form-label" for="fullbnname mt-2">Full Name (বাংলা)</label> <br>
+							<label class="form-label" for="fullbnname">Full Name (বাংলা)</label> <br>
 							<input class="px-2 form-control" id="fullbnname" type="text" required name="full_name_bn" value="<?php echo (isset($fullName_bn)) ? ($fullName_bn) : ("");?>" placeholder="বাংলা">
 							<span class="form-text"></span>
 						</div>
@@ -216,37 +216,37 @@ include_once('../autoload.php');
 
 						<!-- father name field -->
 						<div class="fatherNameField mb-3">
-							<label class="form-label" for="fathersname mt-2">Father's Name</label><br>
+							<label class="form-label" for="fathersname">Father's Name</label><br>
 							<input class="px-2 form-control" id="fathersname" type="text" required name="fathers_name" value="<?php echo (isset($fatherName)) ? ($fatherName) : ("");?>">
 						</div>
 
 						<!-- mother name filed -->
 						<div class="motherNameField mb-3">
-							<label class="form-label" for="mothersname mt-2">Mother's Name</label><br>
+							<label class="form-label" for="mothersname">Mother's Name</label><br>
 							<input class="px-2 form-control" id="mothersname" type="text" required name="mothers_name" value="<?php echo (isset($motherName)) ? ($motherName) : ("");?>">
 						</div>
 
 						<!-- present address filed -->
 						<div class="presentAddress mb-3">
-							<label class="form-label" for="address mt-2">Present Address</label><br>
+							<label class="form-label" for="address">Present Address</label><br>
 							<input class="px-2 form-control" id="address" type="address" required name="address" value="<?php echo (isset($address)) ? ($address) : ("");?>">
 						</div>
 						
 						<!-- Date of birth filed -->
 						<div class="nameField mb-3">
-							<label class="form-label" for="dofdate mt-2">Date of Birth</label><br>
+							<label class="form-label" for="dofdate">Date of Birth</label><br>
 							<input class="px-2 form-control " id="dofdate" onchange="ageCalculator()" type="date" required name="date_of_birth" value="<?php echo (isset($dob)) ? ($dob) : ("");?>">
 						</div>
 
 						<!-- old field -->
 						<div class="oldField mb-3">
-							<label class="form-label" for="old mt-2">Your Old</label><br>
+							<label class="form-label" for="old">Your Old</label><br>
 							<input class="px-2 form-control old"  id="old" type="text" required readonly name="old" value="<?php echo (isset($old)) ? ($old) : ("");?>">
 						</div>
 
 						<!-- occopation field -->
 						<div class="nameField mb-3">
-							<label class="form-label" for="occopation mt-2">Occopation</label><br>
+							<label class="form-label" for="occopation">Occopation</label><br>
 							<input class="px-2 form-control" id="occopation" type="text" required name="occopation" value="<?php echo (isset($occopation)) ? ($occopation) : ("");?>">
 						</div>
 
@@ -264,7 +264,7 @@ include_once('../autoload.php');
 
 						<!-- phone filed -->
 						<div class="nameField mb-3">
-							<label class="form-label" for="nubmer mt-2">Phone Number</label><br>
+							<label class="form-label" for="nubmer">Phone Number</label><br>
 							<input class="px-2 form-control" id="nubmer" type="tel" required name="phone" value="<?php echo (isset($phone)) ? ($phone) : ("");?>">
 						</div>
 
@@ -317,7 +317,7 @@ include_once('../autoload.php');
 
 						<!-- email filed -->
 						<div class="emailField mb-3">
-							<label class="form-label" for="email mt-2">Email</label><br>
+							<label class="form-label" for="email">Email</label><br>
 							<input class="px-2 form-control" id="email" type="email" name="email" required value="<?php echo (isset($email)) ? ($email) : ("");?>">
 							<div class="text-danger">
 								<?php
@@ -330,7 +330,7 @@ include_once('../autoload.php');
 
 						<!-- username -->
 						<div class="userField mb-3">
-							<label class="form-label" for="username mt-2">Username</label><br>
+							<label class="form-label" for="username">Username</label><br>
 							<input class="px-2 form-control" id="username" type="text" name="username" required value="<?php echo (isset($username)) ? ($username) : ("");?>">
 							<div class="text-danger">
 								<?php 
