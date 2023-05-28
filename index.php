@@ -32,7 +32,7 @@ session_start();
 		    		$error['password'] = "password not match!";
 		    	}
 		    }else {
-		    	$error['email'] = "Email not match!";
+		    	$error['username'] = "username not match!";
 		    }
 
 
@@ -85,8 +85,8 @@ session_start();
 							<input class="px-2 form-control" id="username" type="text" name="username" value="<?php echo (isset($username)) ? ($username) : ("");?>">
 							<div class="text-danger">
 								<?php
-									if(isset($error['email'])) {
-										echo $error['email'];
+									if(isset($error['username'])) {
+										echo $error['username'];
 									}
 								?>	
 							</div>
