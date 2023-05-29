@@ -98,6 +98,9 @@
             <a class="nav-link " href="./table.php">All Students</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link " href="./search.php">Search Students</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link live" href="./edit.php">Edit student profile</a>
           </li>
           <li class="nav-item">

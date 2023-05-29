@@ -56,7 +56,7 @@
             <a class="nav-link live" href="./table.php">All Students</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="./search.php">Search Student</a>
+            <a class="nav-link" href="./search.php">Search Students</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="./edit.php">Edit student profile</a>

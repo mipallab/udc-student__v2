@@ -163,6 +163,9 @@ include_once('../config.php');
           <li class="nav-item">
             <a class="nav-link " href="./table.php">All Students</a>
           </li>
+            <li class="nav-item">
+            <a class="nav-link " href="./search.php">Search Students</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="./edit.php">Edit student profile</a>
           </li>
