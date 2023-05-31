@@ -195,7 +195,17 @@
 								
 								<tr>
 									<th scope="row">Occopation</th>
-									<td><input name="occopation" class="form-control" type="text" value="<?php echo $edit_row['occupation'];?>"></td>
+									<td>
+										<!-- <input name="occopation" class="form-control" type="text" value="<?php echo $edit_row['occupation'];?>"> -->
+											<select class="form-select " name="occopation" id="">
+												<option <?php echo ($edit_row['occupation'] ==='student') ? 'selected' : ' '; ?> value="student">Student</option>
+												<option <?php echo ($edit_row['occupation'] ==='house-wife') ? 'selected' : ' '; ?>  value="house-wife">House Wife</option>
+												<option <?php echo ($edit_row['occupation'] ==='doctor') ? 'selected' : ' '; ?> value="doctor">Doctor</option>
+												<option <?php echo ($edit_row['occupation'] ==='enginner') ? 'selected' : ' '; ?> value="enginner">Engineer</option>
+												<option <?php echo ($edit_row['occupation'] ==='job-holder') ? 'selected' : ' '; ?> value="job-holder">Job Holder</option>
+												<option <?php echo ($edit_row['occupation'] ==='government-service-holder') ? 'selected' : ' '; ?> value="government-service-holder">Government Service Holder</option>
+											</select> 
+									</td>
 								</tr>
 								<tr>
 									<th scope="row">Phone Number</th>

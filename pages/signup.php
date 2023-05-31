@@ -260,23 +260,17 @@ include_once('../config.php');
 						</div>
 
 						<!-- occopation field -->
-						<div class="nameField mb-3">
-							<label class="form-label" for="occopation">Occopation</label><br>
-							<input class="px-2 form-control" id="occopation" type="text" required name="occopation" value="<?php echo (isset($occopation)) ? ($occopation) : ("");?>">
-						</div>
-
-						<!-- <div class="nameField mb-3">
+						 <div class="nameField mb-3">
 							<label class="form-label" for="occopation mt-2">Occopation</label><br>
-							<select class="form-select" name="occopation" id="" value="">
-								<option value="">Student</option>
-								<option value="">House Wife</option>
-								<option value="">Doctor</option>
-								<option value="">Engineer</option>
-								<option value="">Job Holder</option>
-								<option value="">Government Service Holder</option>
+							<select class="form-select " name="occopation" id="">
+								<option value="student">Student</option>
+								<option  value="house-wife">House Wife</option>
+								<option value="doctor">Doctor</option>
+								<option  value="enginner">Engineer</option>
+								<option  value="job-holder">Job Holder</option>
+								<option value="government-service-holder">Government Service Holder</option>
 							</select>
-						</div> -->
-
+						</div> 
 						<!-- phone filed -->
 						<div class="nameField mb-3">
 							<label class="form-label" for="nubmer">Phone Number</label><br>
