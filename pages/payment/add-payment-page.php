@@ -186,7 +186,7 @@
 							<div class="input-group mb-3">
 							  <label class="input-group-text" for="inputGroupSelect01">Year</label>
 							  <select class="form-select" id="inputGroupSelect01">
-							    <option selected>Choose...</option>
+							    <option selected>Year...</option>
 							    <option value="2020">2020</option>
 							    <option value="2021">2021</option>
 							    <option value="2022">2022</option>
@@ -194,7 +194,7 @@
 							  </select>
 							  <label class="input-group-text" for="inputGroupSelect02">Month</label>
 							  <select class="form-select" id="inputGroupSelect02">
-							    <option selected>Choose...</option>
+							    <option selected>Month...</option>
 							    <option value="1">January</option>
 							    <option value="2">February</option>
 							    <option value="3">March</option>
