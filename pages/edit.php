@@ -106,7 +106,9 @@
           <li class="nav-item">
             <a class="nav-link" href="./profile.php">View student profile</a>
           </li>
-         
+         <li class="nav-item">
+            <a class="nav-link" href="./payment/payment-page.php">Payment Page</a>
+          </li>
         </ul>
         <div class="d-flex">
             <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/users/<?php echo $admin_row['ad_photo'];?>" alt="" width="50" height="50"></a>
@@ -208,7 +210,7 @@
 									</td>
 								</tr>
 								<tr>
-									<th scope="row">Phone Number</th>
+									<th scope="row">Phone text</th>
 									<td><input name="phone" class="form-control" type="tel" value="<?php echo $edit_row['phone'];?>"></td>
 								</tr>
 								<tr>
@@ -320,6 +322,92 @@
 				</div>
 			</div>
 		</div>
+		<div class="container">
+		<div class="shadow px-3 py-3 my-5">
+			<h3>Payment History:</h3>
+			<table class="table table-bordered ">
+			  <thead>
+			    <tr>
+			      <th width="150" class="text-center" scope="col">Year</th>
+			      <th scope="col">Jan</th>
+			      <th scope="col">Feb</th>
+			      <th scope="col">Mar</th>
+			      <th scope="col">Apr</th>
+			      <th scope="col">May</th>
+			      <th scope="col">Jun</th>
+			      <th scope="col">Jul</th>
+			      <th scope="col">Aug</th>
+			      <th scope="col">Sep</th>
+			      <th scope="col">Oct</th>
+			      <th scope="col">Nov</th>
+			      <th scope="col">Dec</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <th class="align-middle text-center" scope="row">2020</th>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> -</td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> -</td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center">-</td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			    </tr>
+			    <tr>
+			      <th class="align-middle text-center" scope="row">2021</th>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			    </tr>
+			    <tr>
+			      <th class="align-middle text-center" scope="row">2022</th>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			    </tr>
+			    <tr>
+			      <th class="align-middle text-center" scope="row">2023</th>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> <input class="form-control" type="text" value="500"></td>
+			      <td class="align-middle text-center"> </td>
+			      <td class="align-middle text-center"> </td>
+			      <td class="align-middle text-center"> </td>
+			      <td class="align-middle text-center"> </td>
+			      <td class="align-middle text-center"> </td>
+			      <td class="align-middle text-center"> </td>
+			      <td class="align-middle text-center"> </td>
+			    </tr>
+			  </tbody>
+			</table>
+		</div>
+	</div>
 	</div>
 <?php else :
 		echo "<h3 class='text-center py-5'>Pleae Search with \"studetn id\" </h3>";

@@ -172,7 +172,9 @@ include_once('../config.php');
           <li class="nav-item">
             <a class="nav-link" href="./profile.php">View student profile</a>
           </li>
-         
+         <li class="nav-item">
+            <a class="nav-link" href="./payment/payment-page.php">Payment Page</a>
+          </li>
         </ul>
         <div class="d-flex">
             <a href="./ad_profile.php"><img class="rounded-circle border-warning" src="../assects/media/img/users/<?php echo $admin_row['ad_photo'];?>" alt="" width="50" height="50"></a>
