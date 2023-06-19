@@ -17,46 +17,8 @@
 		  $admin_row = mysqli_fetch_assoc($admin_result);
 		
 
-		$edit_id = $_GET['edit_id'] ?? $_GET['get_stu_id'] ?? "";
-
-
-		if(isset($_POST['submit'])) {
-
-		$error = array();
-		//POST data
-		    $address 					= $_POST['address'] ;
-		    $occopation 			= $_POST['occopation'] ;
-		    $phone 						= $_POST['phone'] ;		   
-		    $email 						= $_POST['email'] ;
-		    $username 				= $_POST['username'] ;
-		    $password					= $_POST['password'] ;
-
-
-
-		    
-	    //interested subject
-		    $interested = $_POST['interested_sub'];
-			$chk = '';
-			foreach($interested as $chk1)  
-		   	{  
-		      $chk .= $chk1.", ";  
-		   	}  
-		   	$interested_sub = substr($chk,0,-2);		   	
-
-		   	
-		if(count($error) === 0) {
-
-
-			//send query
-				$sql = "UPDATE `students` SET present_address = '$address', occupation = '$occopation', interested_subject = '$interested_sub', email = '$email', username = '$username', password ='$password' WHERE `stu_id` = '$edit_id'";
-				mysqli_query($connect, $sql) or die('query not send');
-
-			//redirect page
-				header("location:./profile.php?view_id=$edit_id");
-
-		}
-
-}		
+		$view_id = $_GET['edit_id'] ?? $_GET['get_stu_id'] ?? "";
+	
 
 ?>
 
@@ -122,9 +84,9 @@
 
 
 <?php
-		$edit_sql = "SELECT * FROM students WHERE stu_id = '$edit_id'";
-		$edit_result = mysqli_query($connect, $edit_sql) or die('edit query not run');
-		$edit_row = mysqli_fetch_assoc($edit_result);
+		$view_sql = "SELECT * FROM students WHERE stu_id = '$view_id'";
+		$view_result = mysqli_query($connect, $view_sql) or die('edit query not run');
+		$view_row = mysqli_fetch_assoc($view_result);
 ?>
 
 
@@ -135,7 +97,7 @@
 			<div class="card-body">
 				<form action="" method="GET">
 					<label for="stu-search" class="form-label">Name : </label>
-					<input id="stu-search" class="form-control" type="text" name="get_stu_id" placeholder="Search by student id" value="<?php echo $edit_id?>">
+					<input id="stu-search" class="form-control" type="text" name="get_stu_id" placeholder="Search by student id" value="<?php echo $view_id?>">
 					<button class="btn btn-sm btn-warning mt-2" type="submit">search</button>
 				</form>
 			</div>
@@ -145,7 +107,7 @@
 	<!-- show profile field-->
 
 	<?php 
-			if(mysqli_num_rows($edit_result) > 0) :
+			if(mysqli_num_rows($view_result) > 0) :
 	?>
  	<div class="container">
 		<div class="card my-5 shadow">
@@ -156,8 +118,8 @@
 				<div class="profile-head bg-light border" style='background-image: url("../../assects/media/img/users/userBG.jpg")'>
 					<div class="user-pic">
 						<div class="pic">
-							<img width="250px" height="250px" class="profile-pic shadow border border-light border-5 rounded-circle" src="../../assects/media/img/users/<?php echo $edit_row['photo'];?>" alt="Dammy">
-							<h2 class="text-center my-2"><?php echo $edit_row['full_name'];?></h2>
+							<img width="250px" height="250px" class="profile-pic shadow border border-light border-5 rounded-circle" src="../../assects/media/img/users/<?php echo $view_row['photo'];?>" alt="Dammy">
+							<h2 class="text-center my-2"><?php echo $view_row['full_name'];?></h2>
 						</div>
 					</div>
 				</div>
@@ -169,15 +131,15 @@
 							  <tbody>
 							  	<tr>
 							      	<th width="150" scope="row">Student ID</th>
-							      	<td><b><?php echo $edit_row['stu_id'];?></b></td>
+							      	<td><b><?php echo $view_row['stu_id'];?></b></td>
 							    </tr>
 							  	<tr>
 							      	<th scope="row">Full Name(BN)</th>
-							      	<td><?php echo $edit_row['full_name_bn'];?></td>
+							      	<td><?php echo $view_row['full_name_bn'];?></td>
 							    </tr>
 							    <tr>
 							      	<th scope="row">Full Name</th>
-							      	<td><?php echo $edit_row['full_name'];?></td>
+							      	<td><?php echo $view_row['full_name'];?></td>
 							    </tr>
 							  </tbody>
 							</table>
@@ -205,70 +167,136 @@
 								    </tr>
 								  </thead>
 								  <tbody>
+
+								  	<!-- for 2020 -->
 								    <tr>
-								      <th scope="row">2020</th>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>-</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>-</td>
-								      <td>500</td>
-								      <td>-</td>
-								      <td>500</td>
+											<th scope="row">2020</th>
+								    	<?php
+													$payment_view_sql20 = "SELECT * FROM `payment_info2020` WHERE `stu-id` = '$view_id'";
+													$payment_view_result20 = mysqli_query($connect, $payment_view_sql20) or die('payment query not run');
+													$payment_view_row20 = mysqli_fetch_assoc($payment_view_result20);													
+												if(mysqli_num_rows($payment_view_result20)) {
+											?>
+
+								      
+								      <td><?php echo $payment_view_row20['january'];?></td>
+								      <td><?php echo $payment_view_row20['february'];?></td>
+								      <td><?php echo $payment_view_row20['march'];?></td>
+								      <td><?php echo $payment_view_row20['april'];?></td>
+								      <td><?php echo $payment_view_row20['may'];?></td>
+								      <td><?php echo $payment_view_row20['june'];?></td>
+								      <td><?php echo $payment_view_row20['july'];?></td>
+								      <td><?php echo $payment_view_row20['august'];?></td>
+								      <td><?php echo $payment_view_row20['september'];?></td>
+								      <td><?php echo $payment_view_row20['october'];?></td>
+								      <td><?php echo $payment_view_row20['november'];?></td>
+								      <td><?php echo $payment_view_row20['december'];?></td>
+								      <?php
+								      	}else {
+								      		echo "<td colspan='12'> <h5 class='text-center'>2020 payment info not found 😢😢😢 </h5></td>";
+								      	}
+								      ?>
 								    </tr>
+								    <!-- for 2020 end -->
+
+
+
+								    <!-- for 2021 -->
 								    <tr>
-								      <th scope="row">2021</th>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
+											<th scope="row">2021</th>
+								    	<?php
+													$payment_view_sql21 = "SELECT * FROM `payment_info2021` WHERE `stu-id` = '$view_id'";
+													$payment_view_result21 = mysqli_query($connect, $payment_view_sql21) or die('payment query not run');
+													$payment_view_row21 = mysqli_fetch_assoc($payment_view_result21);
+													if(mysqli_num_rows($payment_view_result21)) {										
+											?>
+								      
+								      <td><?php echo $payment_view_row21['january'];?></td>
+								      <td><?php echo $payment_view_row21['february'];?></td>
+								      <td><?php echo $payment_view_row21['march'];?></td>
+								      <td><?php echo $payment_view_row21['april'];?></td>
+								      <td><?php echo $payment_view_row21['may'];?></td>
+								      <td><?php echo $payment_view_row21['june'];?></td>
+								      <td><?php echo $payment_view_row21['july'];?></td>
+								      <td><?php echo $payment_view_row21['august'];?></td>
+								      <td><?php echo $payment_view_row21['september'];?></td>
+								      <td><?php echo $payment_view_row21['october'];?></td>
+								      <td><?php echo $payment_view_row21['november'];?></td>
+								      <td><?php echo $payment_view_row21['december'];?></td>
+								      <?php
+								      	}else {
+								      		echo "<td colspan='12'> <h5 class='text-center'>2021 payment info not found 😢😢😢 </h5></td>";
+								      	}
+								      ?>
 								    </tr>
+								    <!-- for 2021 end -->
+
+
+								    <!-- for 2022 -->
 								    <tr>
-								      <th scope="row">2022</th>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
+											<th scope="row">2022</th>
+								    	<?php
+													$payment_view_sql22 = "SELECT * FROM `payment_info2022` WHERE `stu-id` = '$view_id'";
+													$payment_view_result22 = mysqli_query($connect, $payment_view_sql22) or die('payment query not run');
+													$payment_view_row22 = mysqli_fetch_assoc($payment_view_result22);
+													if(mysqli_num_rows($payment_view_result22)) {										
+											?>
+								      
+								      <td><?php echo $payment_view_row22['january'];?></td>
+								      <td><?php echo $payment_view_row22['february'];?></td>
+								      <td><?php echo $payment_view_row22['march'];?></td>
+								      <td><?php echo $payment_view_row22['april'];?></td>
+								      <td><?php echo $payment_view_row22['may'];?></td>
+								      <td><?php echo $payment_view_row22['june'];?></td>
+								      <td><?php echo $payment_view_row22['july'];?></td>
+								      <td><?php echo $payment_view_row22['august'];?></td>
+								      <td><?php echo $payment_view_row22['september'];?></td>
+								      <td><?php echo $payment_view_row22['october'];?></td>
+								      <td><?php echo $payment_view_row22['november'];?></td>
+								      <td><?php echo $payment_view_row22['december'];?></td>
+								      <?php
+								      	}else {
+								      		echo "<td colspan='12'> <h5 class='text-center'>2022 payment info not found 😢😢😢 </h5></td>";
+								      	}
+								      ?>
 								    </tr>
+								    <!-- for 2022 end -->
+
+
+								    <!-- for 2023 -->
 								    <tr>
-								      <th scope="row">2023</th>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td>500</td>
-								      <td></td>
-								      <td></td>
-								      <td></td>
-								      <td></td>
-								      <td></td>
-								      <td></td>
-								      <td></td>
+											<th scope="row">2023</th>
+								    	<?php
+													$payment_view_sql23 = "SELECT * FROM `payment_info2023` WHERE `stu-id` = '$view_id'";
+													$payment_view_result23 = mysqli_query($connect, $payment_view_sql23) or die('payment query not run');
+													$payment_view_row23 = mysqli_fetch_assoc($payment_view_result23);
+													if(mysqli_num_rows($payment_view_result23)) {										
+											?>
+								      
+								      <td><?php echo $payment_view_row23['january'];?></td>
+								      <td><?php echo $payment_view_row23['february'];?></td>
+								      <td><?php echo $payment_view_row23['march'];?></td>
+								      <td><?php echo $payment_view_row23['april'];?></td>
+								      <td><?php echo $payment_view_row23['may'];?></td>
+								      <td><?php echo $payment_view_row23['june'];?></td>
+								      <td><?php echo $payment_view_row23['july'];?></td>
+								      <td><?php echo $payment_view_row23['august'];?></td>
+								      <td><?php echo $payment_view_row23['september'];?></td>
+								      <td><?php echo $payment_view_row23['october'];?></td>
+								      <td><?php echo $payment_view_row23['november'];?></td>
+								      <td><?php echo $payment_view_row23['december'];?></td>
+								      <?php
+								      	}else {
+								      		echo "<td colspan='12'> <h5 class='text-center'>2022 payment info not found 😢😢😢 </h5></td>";
+								      	}
+								      ?>
 								    </tr>
+								    <!-- for 2023 end -->
+								 
 								  </tbody>
 								</table>
 							</div>
-							<a href="./add-payment-page.php?edit_id=<?php echo $edit_row['stu_id'];?>" class="btn btn-outline-danger ms-4 my-3">Add Payment </a>
+							<a href="./add-payment-page.php?edit_id=<?php echo $view_row['stu_id'];?>" class="btn btn-outline-danger ms-4 my-3">Add Payment </a>
 						</form>
 					</div>
 				</div>
